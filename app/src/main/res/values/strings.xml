@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Simple-Rock-Paper-Scissors</string>
+    <string name="scissors">Ножницы</string>
+    <string name="rock">Камень</string>
+    <string name="paper">Бумага</string>
+    <string name="you_chose">Вы выбрали:</string>
+    <string name="computer_chose">Компьютер выбрал:</string>
+    <string name="result">Результат:</string>
+    <string name="you_win">Вы победили!</string>
+    <string name="computer_win">Победил компьютер</string>
+    <string name="draw">Ничья</string>
+    <string name="back">Назад</string>
+</resources>
