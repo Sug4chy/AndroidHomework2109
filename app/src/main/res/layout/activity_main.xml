@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:text="@string/rock"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/brn_paper"
+        app:layout_constraintBottom_toTopOf="@id/btn_paper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/brn_paper"
+        android:id="@+id/btn_paper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/paper"
@@ -38,6 +38,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/brn_paper" />
+        app:layout_constraintTop_toBottomOf="@id/btn_paper" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

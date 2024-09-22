@@ -2,16 +2,17 @@ package ru.sug4chy.homework2109.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ru.sug4chy.homework2109.R
-import ru.sug4chy.homework2109.model.ChosenVariant
+import ru.sug4chy.homework2109.extensions.findButtonById
+import ru.sug4chy.homework2109.model.RockPaperScissors
 
 class MainActivity : AppCompatActivity() {
-    private val computerChosenVariant = ChosenVariant.entries.toTypedArray().random()
+    private val rockPaperScissorsVariantsTypedArray =
+        RockPaperScissors.Variant.entries.toTypedArray()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,36 +28,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
-        val rockBtn = findButtonById(R.id.btn_rock)
-        rockBtn.setOnClickListener {
-            goToSecondActivity(ChosenVariant.ROCK)
+        findButtonById(R.id.btn_rock).setOnClickListener {
+            goToSecondActivity(RockPaperScissors.Variant.ROCK)
         }
 
-        val paperBtn = findButtonById(R.id.brn_paper)
-        paperBtn.setOnClickListener {
-            goToSecondActivity(ChosenVariant.PAPER)
+        findButtonById(R.id.btn_paper).setOnClickListener {
+            goToSecondActivity(RockPaperScissors.Variant.PAPER)
         }
 
-        val scissorsBtn = findButtonById(R.id.btn_scissors)
-        scissorsBtn.setOnClickListener {
-            goToSecondActivity(ChosenVariant.SCISSORS)
+        findButtonById(R.id.btn_scissors).setOnClickListener {
+            goToSecondActivity(RockPaperScissors.Variant.SCISSORS)
         }
     }
 
-    private fun goToSecondActivity(variant: ChosenVariant) = startActivity(
+    private fun goToSecondActivity(variant: RockPaperScissors.Variant) =
         Intent(this, SecondActivity::class.java).apply {
-            val bundle = Bundle()
-            bundle.putString(PLAYER_CHOSEN_VARIANT_KEY, variant.toString())
-            bundle.putString(COMPUTER_CHOSEN_VARIANT_KEY, computerChosenVariant.toString())
-
-            putExtras(bundle)
+            Bundle().also {
+                it.putString(PLAYER_CHOSEN_VARIANT_KEY, variant.name)
+                it.putString(
+                    COMPUTER_CHOSEN_VARIANT_KEY,
+                    rockPaperScissorsVariantsTypedArray.random().name
+                )
+            }.apply {
+                putExtras(this)
+            }
+        }.run {
+            startActivity(this)
         }
-    )
 
     companion object {
         const val PLAYER_CHOSEN_VARIANT_KEY = "PLAYER_CHOSEN_VARIANT"
         const val COMPUTER_CHOSEN_VARIANT_KEY = "COMPUTER_CHOSEN_VARIANT"
     }
 }
-
-fun AppCompatActivity.findButtonById(id: Int): Button = findViewById(id)
